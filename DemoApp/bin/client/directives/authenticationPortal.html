@@ -1,0 +1,50 @@
+﻿<div ng-if="isAuthenticated()">
+    <home></home>
+</div>
+<div ng-if="!isAuthenticated()">
+    <br />
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <div class="well">
+                <h2>[Insert DemoApp Logo Here]</h2>
+                <br>
+                <form class="form-horizontal">
+                    <div class="form-group">
+                        <label class="col-sm-2">Username</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control"
+                                   ng-model="userName">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2">Password</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control"
+                                   ng-model="password">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <input type="submit" value="Login" class="btn btn-primary"
+                                   ng-click="login(userName, password)">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            Register - Forgot Password
+                        </div>
+                    </div>
+                </form>
+
+                <div class="alert alert-danger alert-dismissible"
+                     ng-show="loginError">
+                    <button type="button" class="close"
+                            ng-click="dismissLoginError()">
+                        <span>&times;</span>
+                    </button>
+                    <strong>Error:</strong> {{ loginError }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

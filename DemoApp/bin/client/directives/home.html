@@ -1,0 +1,68 @@
+﻿<navigation></navigation>
+
+<div class="container">
+    <ul class="nav nav-tabs">
+        <li ng-class="{ active: selectedTab == 'createADocument' }"
+            ng-click="selectTab('createADocument')">
+            <a href="#">Create a Document</a>
+        </li>
+        <li ng-class="{ active: selectedTab == 'viewAllDocuments' }"
+            ng-click="selectTab('viewAllDocuments')">
+            <a href="#">View All Documents ({{ documents.length }})</a>
+        </li>
+    </ul>
+
+    <br />
+    <div ng-show="selectedTab == 'createADocument'">
+        <label>Title</label>
+        <input type="text" class="form-control" placeholder="Enter the Document Title"
+               ng-model="document.title" />
+
+        <br />
+        <label>Body</label>
+        <textarea class="form-control" rows="5" placeholder="Enter the Document Body"
+                  ng-model="document.body"></textarea>
+
+        <br />
+        <button class="btn btn-primary"
+                ng-click="addDocument()">
+            Add Document
+        </button>
+
+        <div ng-show="addDocumentError">
+            <br />
+
+            <div class="alert alert-danger">
+                <button type="button" class="close"
+                        ng-click="dismissAddDocumentError()">
+                    <span>&times;</span>
+                </button>
+                <strong>Error Adding Document:</strong>
+                <br />
+                {{ addDocumentError }}
+            </div>
+        </div>
+    </div>
+    <div ng-show="selectedTab == 'viewAllDocuments'">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Document Id</th>
+                    <th>Title</th>
+                    <th>Body</th>
+                    <th>Created By</th>
+                    <th>Created When</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="d in documents">
+                    <td>{{ d.documentId }}</td>
+                    <td>{{ d.title }}</td>
+                    <td>{{ d.body }}</td>
+                    <td>{{ getUserNameFromUserId(d.createdBy) }}</td>
+                    <td>{{ d.createdWhen | date:'short' }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
