@@ -30,7 +30,7 @@ namespace DemoApp.Web.Api.Document
             {
                 await connection.OpenAsync();
 
-                var transaction = connection.BeginTransaction();
+                //var transaction = connection.BeginTransaction();
 
                 // Get the name of the logged in user from the controller.
                 var userName = this.User.Identity.Name;
@@ -41,10 +41,10 @@ namespace DemoApp.Web.Api.Document
 
                 // Set the created by to be the current user.
                 request.CreatedBy = userId;
-
+                
                 // Set the created when to be now.
                 request.CreatedWhen = DateTime.UtcNow;
-
+                request.Title.ToString();
                 // Create the new document in the database.
                 await connection.ExecuteAsync(@"
 INSERT INTO Document
@@ -71,7 +71,7 @@ Body,
 CreatedWhen,
 CreatedBy
 FROM 
-Document
+Document;
 ");
 
                 return result;

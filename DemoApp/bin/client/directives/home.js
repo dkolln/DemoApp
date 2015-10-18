@@ -16,9 +16,10 @@
                     $http.get('api/document').then(function (response) {
                         // This is executed on a successful GET request.
                         scope.documents = response.data;
-
+                        
                         scope.documents.forEach(function (d) {
-                            d.createdWhen = new Date(d.createdWhen);
+                            
+                            d.createdWhen = new DateTime.ParseExtract(CreatedWhen, "yyyy-MM-dd", IFormatProvider("en-US", true));
                         });
                     }, function (response) {
                         // TODO: Something on unsuccessful GET request.
